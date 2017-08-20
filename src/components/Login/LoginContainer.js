@@ -1,20 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import LoginForm from './LoginForm'
-import {login} from '../../api/apiCalls'
+import { login } from '../../api/apiCalls'
+import { setAuth } from '../Login/redux/actions'
 
-class componentName extends Component {
 
-    constructor(){
+class LoginContainer extends Component {
+
+    constructor() {
         super()
 
-        this.state ={
+        this.state = {
             error: null
         }
     }
 
-    render () {
+    render() {
         return (
-            <LoginForm handleLogin={this.handleLogin} error={this.state.error}/>
+            <LoginForm handleLogin={this.handleLogin} error={this.state.error} />
         )
     }
 
@@ -24,9 +27,8 @@ class componentName extends Component {
         })
 
         login({ email, password })
-            .then(token => {
-                // TODO ADD REDUX TO STORE TOKEN
-                console.log('login!', token)
+            .then(response => {
+                this.props.dispatch(setAuth(response.token, response.user.name, response.user.email, response.user._id))
             })
             .catch(err => {
                 let message
@@ -45,4 +47,8 @@ class componentName extends Component {
     }
 }
 
-export default componentName
+LoginContainer = connect(function (state, ownProps) {
+    return state
+})(LoginContainer)
+
+export default LoginContainer

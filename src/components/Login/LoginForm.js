@@ -22,6 +22,7 @@ class LoginForm extends Component {
         e.preventDefault()
         const email = this.state.email
         const password = this.state.password
+
         this.props.handleLogin(email, password)
     }
 

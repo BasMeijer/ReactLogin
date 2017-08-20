@@ -51,7 +51,7 @@ export function login(accountDetails) {
     }
     return fetch(`${BASE_URL}${LOGIN_URL}`, options)
         .then(handleRestResponse)
-        .then(response => response.token)
+        .then(response => response)
 }
 
 // TODO ADD LOGOUT FUNCTION
