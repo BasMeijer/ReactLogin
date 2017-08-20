@@ -7,11 +7,9 @@ class App extends Component {
   render() {
     console.log(this.props)
     return (
-      <div className="App">
-        <div className="App-header">
+      <div>
           <h2>Basic React/Redux Login</h2>
           <LoginContainer />
-        </div>
       </div>
     );
   }
